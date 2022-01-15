@@ -109,8 +109,8 @@ class HomeFragment : Fragment(R.layout.fragment_home), KodeinAware, AppHistoryCl
         binding.orders.adapter = myRecyclerViewAdapter
     }
 
-    override fun onItemClick(contact: AppDetails) {
-        myCommunicator?.addContentFragment(NewScheduleFragment(contact), true)
+    override fun onItemClick(data: AppDetails) {
+        myCommunicator?.addContentFragment(NewScheduleFragment(data), true)
     }
 
     override fun onBackPressed(): Boolean {
@@ -126,7 +126,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), KodeinAware, AppHistoryCl
         }
     }
 
-    fun checkStartPermissionRequest(): Boolean {
+    private fun checkStartPermissionRequest(): Boolean {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (!Settings.canDrawOverlays(requireActivity())) {
                 val intent = Intent(
@@ -144,8 +144,6 @@ class HomeFragment : Fragment(R.layout.fragment_home), KodeinAware, AppHistoryCl
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == 10) {
             if (Settings.canDrawOverlays(requireActivity())) {
-                //startService(new Intent(this, PowerButtonService.class));
-                //Toast.makeText(this, "permission granted", Toast.LENGTH_SHORT).show();
                 if (!checkStartPermissionRequest()) {
                     checkStartPermissionRequest()
                 } else {
@@ -154,7 +152,6 @@ class HomeFragment : Fragment(R.layout.fragment_home), KodeinAware, AppHistoryCl
                         "Permission Granted",
                         Toast.LENGTH_SHORT
                     ).show()
-                    //callBeacon();
                 }
             }
         }

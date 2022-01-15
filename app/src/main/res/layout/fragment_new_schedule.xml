@@ -33,7 +33,7 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:padding="5dp"
-                android:src="@android:drawable/ic_menu_share"/>
+                android:src="@android:drawable/ic_menu_help"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -135,7 +135,7 @@
             android:text="Save"
             android:gravity="center"
             android:padding="10dp"
-            android:background="@color/design_default_color_primary"
+            android:background="@drawable/rounded_corner"
             android:textColor="@color/white"
             android:textSize="18sp"
             android:layout_marginTop="20dp"/>

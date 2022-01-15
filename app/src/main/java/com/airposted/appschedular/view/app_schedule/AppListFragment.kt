@@ -14,6 +14,8 @@ import com.airposted.appschedular.R
 import com.airposted.appschedular.model.AppDetails
 import com.airposted.appschedular.databinding.FragmentAppListBinding
 import com.airposted.appschedular.utils.Coroutines
+import com.airposted.appschedular.utils.dismissDialog
+import com.airposted.appschedular.utils.setProgressDialog
 import com.airposted.appschedular.view.IOnBackPressed
 import com.airposted.appschedular.view.home.CommunicatorFragmentInterface
 import com.airposted.appschedular.view.home.HomeViewModelFactory
@@ -83,13 +85,15 @@ class AppListFragment(private val data: AppDetails?) : Fragment(R.layout.fragmen
         )
         binding.apps.itemAnimator = DefaultItemAnimator()
         binding.apps.adapter = myRecyclerViewAdapter
+
+        dismissDialog()
     }
 
-    override fun onItemClick(contact: AppDetails) {
+    override fun onItemClick(data: AppDetails) {
         if (data != null) {
-            viewModel.newAppData(AppDetails(contact.name, contact.packageName, data.time, data.description, null, data.id))
+            viewModel.newAppData(AppDetails(data.name, data.packageName, data.time, data.description, null, data.id))
         } else {
-            viewModel.newAppData(contact)
+            viewModel.newAppData(data)
         }
         requireActivity().onBackPressed()
     }

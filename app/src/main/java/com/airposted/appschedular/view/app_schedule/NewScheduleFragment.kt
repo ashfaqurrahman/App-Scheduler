@@ -19,6 +19,7 @@ import com.airposted.appschedular.model.AppDetails
 import com.airposted.appschedular.databinding.FragmentNewScheduleBinding
 import com.airposted.appschedular.utils.Coroutines
 import com.airposted.appschedular.utils.ScheduleWorker
+import com.airposted.appschedular.utils.setProgressDialog
 import com.airposted.appschedular.view.IOnBackPressed
 import com.airposted.appschedular.view.home.CommunicatorFragmentInterface
 import com.airposted.appschedular.view.home.HomeViewModelFactory
@@ -113,6 +114,8 @@ class NewScheduleFragment(private val appDetails: AppDetails?) : Fragment(R.layo
         })
 
         binding.appLayout.setOnClickListener {
+
+            setProgressDialog(requireActivity())
             if (appDetails != null) {
                 myCommunicator?.addContentFragment(AppListFragment(appDetails), true)
             } else {
@@ -251,7 +254,7 @@ class NewScheduleFragment(private val appDetails: AppDetails?) : Fragment(R.layo
                             requireActivity().onBackPressed()
                         }
                     } else {
-                        Toast.makeText(requireActivity(), "You must set a future date", Toast.LENGTH_LONG).show()
+                        Toast.makeText(requireActivity(), "You must set a future date and time", Toast.LENGTH_LONG).show()
                     }
                 } else {
                     Toast.makeText(requireActivity(), "Set time first", Toast.LENGTH_LONG).show()
@@ -276,7 +279,5 @@ class NewScheduleFragment(private val appDetails: AppDetails?) : Fragment(R.layo
                     }
                 }
             })
-
-
     }
 }

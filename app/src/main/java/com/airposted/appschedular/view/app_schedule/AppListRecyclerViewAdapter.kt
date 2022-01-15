@@ -10,6 +10,7 @@ import com.airposted.appschedular.R
 import com.airposted.appschedular.model.AppDetails
 import android.content.pm.PackageManager
 import android.graphics.drawable.Drawable
+import androidx.core.content.ContextCompat
 import com.airposted.appschedular.databinding.SavedAppListItemBinding
 
 class AppListRecyclerViewAdapter(
@@ -41,6 +42,8 @@ class AppListRecyclerViewAdapter(
         } catch (e: PackageManager.NameNotFoundException) {
             e.printStackTrace()
         }
+
+        holder.binding.delete.setColorFilter(ContextCompat.getColor(context, android.R.color.holo_green_light))
 
         holder.binding.layout.setOnClickListener {
             appHistoryClickListener.onItemClick(dataModel)

@@ -63,6 +63,7 @@ class SavedAppListRecyclerViewAdapter(
 
         if (Calendar.getInstance().timeInMillis > c.timeInMillis) {
             holder.binding.time.setTextColor(context.getColor(android.R.color.darker_gray))
+            holder.binding.layout.setCardBackgroundColor(context.getColor(R.color.grey))
         }
 
     }
